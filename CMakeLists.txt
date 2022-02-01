@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(tileson)
+project(tileson CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(TILESON_PROJECT_VERSION_MAJOR 1)
@@ -9,7 +9,7 @@ set(TILESON_PROJECT_VERSION_PATCH 1)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DTILESON_DEBUG")
 
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Release" CACHE STRING
+    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING
             "Choose the type of build, options are: Debug Release
 RelWithDebInfo MinSizeRel."
             FORCE)
@@ -58,7 +58,7 @@ endif()
 #option(BUILD_SHARED_LIBS "Build shared libraries." OFF)
 option(BUILD_TESTS "Build unit tests." ON)
 option(BUILD_EXAMPLES "Build examples." OFF)
-option(CLEAR_TSON_CMAKE_CACHE "Clear CMake cache for variables. Activate if you are working on the code. Otherwise: keep it off" OFF)
+option(CLEAR_TSON_CMAKE_CACHE "Clear CMake cache for variables. Activate if you are working on the code. Otherwise: keep it off" ON)
 
 option(USE_LEGACY_CLANG_FOR_TESTS "Only use when you have an old version of Homebrew's Clang on OSX" OFF)
 
@@ -83,17 +83,11 @@ configure_file (
 
 include_directories(${PROJECT_SOURCE_DIR}/external_libs/)
 
-#set(SOURCE_FILES src/objects/Vector2.hpp src/Tileson.cpp src/Tileson.h src/tiled/Map.cpp src/tiled/Map.h src/tiled/Layer.cpp src/tiled/Layer.h src/tiled/Chunk.cpp src/tiled/Chunk.h src/tiled/Object.cpp src/tiled/Object.h src/objects/Property.cpp src/objects/Property.h src/objects/PropertyCollection.cpp src/objects/PropertyCollection.h src/tiled/Tileset.cpp src/tiled/Tileset.h src/tiled/Tile.cpp src/tiled/Tile.h src/tiled/Frame.cpp src/tiled/Frame.h src/tiled/Terrain.cpp src/tiled/Terrain.h src/tiled/WangSet.cpp src/tiled/WangSet.h src/tiled/WangColor.cpp src/tiled/WangColor.h src/tiled/WangTile.cpp src/tiled/WangTile.h src/tiled/Text.hpp src/tiled/Grid.cpp src/tiled/Grid.h src/objects/Color.hpp src/misc/MemoryBuffer.cpp src/misc/MemoryBuffer.h src/misc/MemoryStream.cpp src/misc/MemoryStream.h include/tileson_parser.hpp)
-set(INCLUDE_FILES include/tileson.h include/tileson_parser.hpp include/misc/MemoryBuffer.hpp include/misc/MemoryStream.hpp include/objects/Color.hpp
-        include/objects/Property.hpp include/objects/PropertyCollection.hpp include/objects/Vector2.hpp include/tiled/Chunk.hpp include/tiled/Frame.hpp
-        include/tiled/Grid.hpp include/tiled/Layer.hpp include/tiled/Map.hpp include/tiled/Object.hpp include/tiled/Terrain.hpp include/tiled/Text.hpp
-        include/tiled/Tile.hpp include/tiled/Tileset.hpp include/tiled/WangColor.hpp include/tiled/WangSet.hpp include/tiled/WangTile.hpp
-        include/objects/Rect.hpp include/common/tileson_forward.hpp include/interfaces/IDecompressor.hpp include/common/Base64Decompressor.hpp
-        include/common/DecompressorContainer.hpp include/common/Tools.hpp include/tiled/Project.hpp include/objects/ProjectData.hpp
-        include/objects/ProjectFolder.hpp include/tiled/World.hpp include/objects/WorldMapData.hpp)
-
-# Only activated for code completion, must be uncommented before release!
-# add_library(tileson ${SOURCE_FILES} ${INCLUDE_FILES})
+add_library(tileson INTERFACE)
+target_include_directories(tileson INTERFACE 
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
+    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+)
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
