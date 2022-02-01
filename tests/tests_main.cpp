@@ -702,7 +702,7 @@ TEST_CASE( "Go through demo code - get success", "[demo]" )
 
         tson::Property *prop = layer->getProp("my_property");
     }
-    else //Error occured
+    else //Error occurred
     {
         std::cout << map->getStatusMessage();
     }

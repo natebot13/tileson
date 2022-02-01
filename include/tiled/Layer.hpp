@@ -568,7 +568,7 @@ tson::Map *tson::Layer::getMap() const
  * This is only supported for non-infinite maps!
  *
  * @param mapSize The size of the map
- * @param isInfiniteMap Whether or not the current map is infinte.
+ * @param isInfiniteMap Whether or not the current map is infinite.
  */
 void tson::Layer::createTileData(const Vector2i &mapSize, bool isInfiniteMap)
 {

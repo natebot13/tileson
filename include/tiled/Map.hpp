@@ -236,16 +236,16 @@ void tson::Map::processData()
         layer.assignTileMap(&m_tileMap);
         layer.createTileData(m_size, m_isInfinite);
         const std::set<uint32_t> &flaggedTiles = layer.getUniqueFlaggedTiles();
-        for(uint32_t ftile : flaggedTiles)
+        for(uint32_t fTile : flaggedTiles)
         {
-            tson::Tile tile {ftile, layer.getMap()};
+            tson::Tile tile {fTile, layer.getMap()};
             if(m_tileMap.count(tile.getGid()))
             {
                 tson::Tile *originalTile = m_tileMap[tile.getGid()];
                 tile.addTilesetAndPerformCalculations(originalTile->getTileset());
                 tile.setProperties(originalTile->getProperties());
-                m_flaggedTileMap[ftile] = tile;
-                m_tileMap[ftile] = &m_flaggedTileMap[ftile];
+                m_flaggedTileMap[fTile] = tile;
+                m_tileMap[fTile] = &m_flaggedTileMap[fTile];
             }
         }
         layer.resolveFlaggedTiles();
