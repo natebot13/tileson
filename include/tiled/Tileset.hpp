@@ -28,7 +28,7 @@ namespace tson
             inline bool parse(IJson &json, tson::Map *map);
 
             [[nodiscard]] inline int getColumns() const;
-            [[nodiscard]] inline int getFirstgid() const;
+            [[nodiscard]] inline uint32_t getFirstgid() const;
 
             [[nodiscard]] inline const fs::path &getImagePath() const;
             [[nodiscard]] inline const fs::path &getImage() const;
@@ -218,7 +218,7 @@ int tson::Tileset::getColumns() const
  * 'firstgid': GID corresponding to the first tile in the set
  * @return
  */
-int tson::Tileset::getFirstgid() const
+uint32_t tson::Tileset::getFirstgid() const
 {
     return m_firstgid;
 }

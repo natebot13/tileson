@@ -122,12 +122,12 @@ TEST_CASE( "Help a fellow programmer in need - expect solution (Issue #4)", "[he
 
 
     //On récupère le premier ID de la tile du Tileset
-    int firstId = tileset->getFirstgid(); //First tile id of the tileset
+    uint32_t firstId = tileset->getFirstgid(); //First tile id of the tileset
 
     //On récupère le nombre de colonne
     int columns = tileset->getColumns(); //For the demo map it is 8.
     //On récupère le dernier ID (=premier ID + nombre de tile -1)
-    int lastId = (tileset->getFirstgid() + tileset->getTileCount()) - 1;
+    uint32_t lastId = (tileset->getFirstgid() + tileset->getTileCount()) - 1;
 
     //On vérifie que le layer est bien un tileLayer
     if (tileLayer->getType() == tson::LayerType::TileLayer)
