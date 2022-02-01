@@ -52,8 +52,8 @@ namespace tson
             inline tson::Tileset * getTileset() const;
             inline tson::Map * getMap() const;
             inline const tson::Rect &getDrawingRect() const;
-            inline const tson::Vector2f getPosition(const std::tuple<int, int> &tileDataPos);
-            inline const tson::Vector2i getPositionInTileUnits(const std::tuple<int, int> &tileDataPos);
+            inline const tson::Vector2f getPosition(const std::tuple<int, int> &tileDataPos) const;
+            inline const tson::Vector2i getPositionInTileUnits(const std::tuple<int, int> &tileDataPos) const;
             inline const tson::Vector2i getTileSize() const;                       /*! Declared in tileson_forward.hpp */
 
             [[nodiscard]] inline TileFlipFlags getFlipFlags() const;
@@ -304,7 +304,7 @@ const tson::Rect &tson::Tile::getDrawingRect() const
  *
  * @return Position of tile in tile units.
  */
-const tson::Vector2i tson::Tile::getPositionInTileUnits(const std::tuple<int, int> &tileDataPos)
+const tson::Vector2i tson::Tile::getPositionInTileUnits(const std::tuple<int, int> &tileDataPos) const
 {
     return {std::get<0>(tileDataPos), std::get<1>(tileDataPos)};
 }

@@ -80,7 +80,7 @@ void tson::Tile::performDataCalculations()
  * Get the position of the tile in pixels based on the tile data position from the current layer.
  * @return The position of the tile in Pixels
  */
-const tson::Vector2f tson::Tile::getPosition(const std::tuple<int, int> &tileDataPos)
+const tson::Vector2f tson::Tile::getPosition(const std::tuple<int, int> &tileDataPos) const
 {
     return {((float) std::get<0>(tileDataPos)) * m_drawingRect.width, ((float) std::get<1>(tileDataPos)) * m_drawingRect.height};
 }
