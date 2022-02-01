@@ -601,7 +601,7 @@ TEST_CASE( "Gason - Parse a Tileset from Tiled's documentation - read simple val
             tileset.getColumns() == 19 &&
             tileset.getFirstgid() == 1 &&
 
-            tileset.getImagePath() == fs::path("../image/fishbaddie_parts.png") &&
+            tileset.getImage() == fs::path("../image/fishbaddie_parts.png") &&
 
             tileset.getImageSize() == tson::Vector2i(640, 480) &&
             tileset.getMargin() == 3 &&

@@ -30,7 +30,7 @@ namespace tson
             [[nodiscard]] inline int getColumns() const;
             [[nodiscard]] inline uint32_t getFirstgid() const;
 
-            [[nodiscard]] inline const fs::path &getImagePath() const;
+            [[nodiscard]] inline const fs::path &getPath() const;
             [[nodiscard]] inline const fs::path &getImage() const;
 
             [[nodiscard]] inline const Vector2i &getImageSize() const;
@@ -228,7 +228,14 @@ uint32_t tson::Tileset::getFirstgid() const
  * @return
  */
 
-const fs::path &tson::Tileset::getImagePath() const { return m_image; }
+const fs::path &tson::Tileset::getImage() const { return m_image; }
+
+/*!
+ * 'image': Image used for tiles in this set
+ * @return
+ */
+
+const fs::path &tson::Tileset::getPath() const { return m_path; }
 
 /*!
  * x = 'imagewidth' and y = 'imageheight': in pixels
@@ -301,13 +308,6 @@ const std::string &tson::Tileset::getType() const
 {
     return m_type;
 }
-
-/*!
- * 'image': Image used for tiles in this set
- * @return
- */
-
-const fs::path &tson::Tileset::getImage() const { return m_image; }
 
 /*!
  * 'tiles': Array of Tiles (optional)
