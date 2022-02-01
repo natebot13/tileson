@@ -83,11 +83,19 @@ configure_file (
 
 include_directories(${PROJECT_SOURCE_DIR}/external_libs/)
 
+# Add tileson target
+
+include(GNUInstallDirs)
+
 add_library(tileson INTERFACE)
+add_library(tson ALIAS tileson)
+
 target_include_directories(tileson INTERFACE 
-    "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>"
-    "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
+    $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
+
+target_compile_features(tileson INTERFACE cxx_std_17)
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
