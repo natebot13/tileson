@@ -57,7 +57,7 @@ namespace tson
             inline const tson::Vector2i getTileSize() const;                       /*! Declared in tileson_forward.hpp */
 
             [[nodiscard]] inline TileFlipFlags getFlipFlags() const;
-            inline bool hasFlipFlags(TileFlipFlags flags);
+            inline bool hasFlipFlags(TileFlipFlags flags) const;
             [[nodiscard]] inline uint32_t getGid() const;
 
             inline void addTilesetAndPerformCalculations(tson::Tileset *tileset); //v1.2.0
@@ -331,7 +331,7 @@ tson::TileFlipFlags tson::Tile::getFlipFlags() const
  *
  * @return true if the flag(s) specified are set
  */
-bool tson::Tile::hasFlipFlags(tson::TileFlipFlags flags)
+bool tson::Tile::hasFlipFlags(tson::TileFlipFlags flags) const
 {
     return ((m_flipFlags & flags) == flags) ? true : false;
 }
