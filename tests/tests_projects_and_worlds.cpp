@@ -8,7 +8,7 @@
 
 TEST_CASE( "Parse world - Expect 4 maps and parsed data", "[project][world]" )
 {
-    fs::path pathLocal {"../../content/test-maps/project/world/test.world"};
+    fs::path pathLocal {"content/test-maps/project/world/test.world"};
     fs::path pathTravis {"../content/test-maps/project/world/test.world"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 
@@ -24,7 +24,7 @@ TEST_CASE( "Parse world - Expect 4 maps and parsed data", "[project][world]" )
 
 TEST_CASE( "Parse project - expect right number of files and folders", "[project][world]" )
 {
-    fs::path pathLocal {"../../content/test-maps/project/test.tiled-project"};
+    fs::path pathLocal {"content/test-maps/project/test.tiled-project"};
     fs::path pathTravis {"../content/test-maps/project/test.tiled-project"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 

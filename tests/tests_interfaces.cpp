@@ -170,7 +170,7 @@ TEST_CASE( "Test a nlohmann implementation of IJson", "[json][interface]" )
 TEST_CASE( "Test a picojson implementation of IJson", "[json][interface]" )
 {
 
-    fs::path pathLocal {"../../content/test-maps/ultimate_test.json"};
+    fs::path pathLocal {"content/test-maps/ultimate_test.json"};
     fs::path pathTravis {"../content/test-maps/ultimate_test.json"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 
@@ -189,7 +189,7 @@ TEST_CASE( "Test a picojson implementation of IJson", "[json][interface]" )
 TEST_CASE( "Test a Json11 implementation of IJson", "[json][interface]" )
 {
 
-    fs::path pathLocal {"../../content/test-maps/ultimate_test.json"};
+    fs::path pathLocal {"content/test-maps/ultimate_test.json"};
     fs::path pathTravis {"../content/test-maps/ultimate_test.json"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 

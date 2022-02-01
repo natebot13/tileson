@@ -16,7 +16,7 @@ TEST_CASE( "Nullptr error on getposition when parsing json (Issue #17)", "[help]
 {
     tson::Tileson t;
 
-    fs::path path {"../../content/test-maps/issues/issue_17.json"};
+    fs::path path {"content/test-maps/issues/issue_17.json"};
 
     std::unique_ptr<tson::Map> map = t.parse(path); // <== this is where I get the nullptr error
 
@@ -46,7 +46,7 @@ TEST_CASE( "Tile ObjectGroup's not set properly if one or more tiles have no pro
 {
     tson::Tileson t;
 
-    fs::path pathLocal {"../../content/test-maps/issues/issue_46_map.json"};
+    fs::path pathLocal {"content/test-maps/issues/issue_46_map.json"};
     fs::path pathTravis {"../content/test-maps/issues/issue_46_map.json"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 
@@ -100,7 +100,7 @@ TEST_CASE( "Help a fellow programmer in need - expect solution (Issue #4)", "[he
     tson::Layer* tileLayer;
     tson::Tileset* tileset;
 
-    fs::path pathCarte {"../../content/test-maps/issues/Preluda3.json"};
+    fs::path pathCarte {"content/test-maps/issues/Preluda3.json"};
     jsCarte = jsTileson.parse(pathCarte);
 
     if (jsCarte->getStatus() == tson::ParseStatus::OK)

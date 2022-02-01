@@ -25,3 +25,10 @@ elseif(WINDOWS)
     message("WINDOWS!")
     #target_link_libraries(tileson_tests tileson)
 endif()
+
+if(LINUX OR WINDOWS)
+    add_custom_command(
+        TARGET ${PROJECT_NAME}
+        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E
+        create_symlink ${CMAKE_CURRENT_SOURCE_DIR}/../content $<TARGET_FILE_DIR:${PROJECT_NAME}>/content)
+endif()

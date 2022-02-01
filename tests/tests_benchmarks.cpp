@@ -19,11 +19,11 @@
 
 TEST_CASE( "Run benchmarks on all supported json-backends", "[json][benchmarks]" )
 {
-    fs::path pathLocal {"../../content/test-maps/ultimate_test.json"};
+    fs::path pathLocal {"content/test-maps/ultimate_test.json"};
     fs::path pathTravis {"../content/test-maps/ultimate_test.json"};
     fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 
-    fs::path pathLzmaLocal {"../../content/test-maps/ultimate_test.lzma"};
+    fs::path pathLzmaLocal {"content/test-maps/ultimate_test.lzma"};
     fs::path pathLzmaTravis {"../content/test-maps/ultimate_test.lzma"};
     fs::path pathLzmaToUse = (fs::exists(pathLzmaLocal)) ? pathLzmaLocal : pathLzmaTravis;
 
@@ -74,11 +74,11 @@ TEST_CASE( "Run benchmarks on all supported json-backends", "[json][benchmarks]"
 //
 //TEST_CASE( "Run benchmarks on Gason (unsupported)", "[json][benchmarks]" )
 //{
-//    fs::path pathLocal {"../../content/test-maps/ultimate_test.json"};
+//    fs::path pathLocal {"content/test-maps/ultimate_test.json"};
 //    fs::path pathTravis {"../content/test-maps/ultimate_test.json"};
 //    fs::path pathToUse = (fs::exists(pathLocal)) ? pathLocal : pathTravis;
 //
-//    fs::path pathLzmaLocal {"../../content/test-maps/ultimate_test.lzma"};
+//    fs::path pathLzmaLocal {"content/test-maps/ultimate_test.lzma"};
 //    fs::path pathLzmaTravis {"../content/test-maps/ultimate_test.lzma"};
 //    fs::path pathLzmaToUse = (fs::exists(pathLzmaLocal)) ? pathLzmaLocal : pathLzmaTravis;
 //
