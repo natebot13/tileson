@@ -20,7 +20,7 @@ set(CMAKE_CXX_STANDARD 17)
 include(GNUInstallDirs)
 
 add_library(tileson INTERFACE)
-add_library(tson ALIAS tileson)
+add_library(tileson::tileson ALIAS tileson)
 
 target_include_directories(tileson INTERFACE 
     $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/include>
