@@ -6,6 +6,8 @@ set(TILESON_PROJECT_VERSION_MAJOR 1)
 set(TILESON_PROJECT_VERSION_MINOR 3)
 set(TILESON_PROJECT_VERSION_PATCH 1)
 
+string(JOIN "." TILESON_VERSION ${TILESON_PROJECT_VERSION_MAJOR} ${TILESON_PROJECT_VERSION_MINOR} ${TILESON_PROJECT_VERSION_PATCH})
+
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DTILESON_DEBUG")
 
 if(NOT CMAKE_BUILD_TYPE)
@@ -62,26 +64,27 @@ option(CLEAR_TSON_CMAKE_CACHE "Clear CMake cache for variables. Activate if you 
 
 option(USE_LEGACY_CLANG_FOR_TESTS "Only use when you have an old version of Homebrew's Clang on OSX" OFF)
 
-#if(APPLE)
-#    option(DISABLE_CPP17_FILESYSTEM "Disables cpp17 std::filesystem for anything file related" ON)
-#else()
-#    option(DISABLE_CPP17_FILESYSTEM "Disables cpp17 std::filesystem for anything file related" OFF)
-#endif()
-
-# option(DISABLE_CPP17_FILESYSTEM "Disables cpp17 std::filesystem for anything file related" OFF)
-
-#if(DISABLE_CPP17_FILESYSTEM)
-#    set(DISABLE_CPP17_FILESYSTEM 1)
-#else()
-#    set(DISABLE_CPP17_FILESYSTEM 0)
-#endif()
-
 configure_file (
         "${PROJECT_SOURCE_DIR}/TilesonConfig.h.in"
         "${PROJECT_SOURCE_DIR}/TilesonConfig.h"
 )
 
 include_directories(${PROJECT_SOURCE_DIR}/external_libs/)
+
+# install pkgconfig files
+
+set(tileson_PKGCONFIG ${CMAKE_CURRENT_BINARY_DIR}/tileson.pc)
+
+configure_file(
+    ${tileson_SOURCE_DIR}/cmake/in/tileson.pc.in
+    ${tileson_PKGCONFIG}
+    @ONLY
+)
+
+install(
+    FILES ${tileson_PKGCONFIG}
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
+)
 
 # Add tileson target
 
