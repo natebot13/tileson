@@ -1,38 +1,44 @@
+# Tileson
+
 [![Build Status](https://travis-ci.org/SSBMTonberry/tileson.svg?branch=master)](https://travis-ci.org/SSBMTonberry/tileson)
 
-
-# Tileson
 Tileson is a modern and helpful cross-platform json-parser for C++, used for parsing Tiled maps.
 
 Tileson utilizes modern C++ (C++17) to create a stable, safe and helpful, but fast, parser for Tiled maps.
-Including classes and functions to make it easier to use the Tiled data in your game. 
+Including classes and functions to make it easier to use the Tiled data in your game.
 Tileson supports Tiled maps up to version `1.6.0`, but will probably be able to parse
 maps made with newer versions of Tiled just as well.
 
 Be sure to take a look at the release notes to see what's new!
 
-# Documentation
+## Documentation
 
 There is a `Doxygen` generated documentation of Tileson that can be found [HERE](https://ssbmtonberry.github.io/tileson/html)
 
-### IMPORTANT: Tileson requires that everything it needs in a map is embedded into it, to be able to resolve their related objects (with the exception of external Tilesets, which is supported in json format since v1.3.0). Maps having dependencies to external objects etc. will not work properly.
+### IMPORTANT
 
-# How to contribute
+Tileson requires that everything it needs in a map is embedded into it, to be able to resolve their related objects (with the exception of external Tilesets, which is supported in json format since v1.3.0). Maps having dependencies to external objects etc. will not work properly.
+
+## How to contribute
+
 You are free to post any issue requesting new features, reporting bugs or asking questions at any time.
 If you want to contribute in the development of `Tileson`, make sure you read the [CONTRIBUTION GUIDELINES](https://github.com/SSBMTonberry/tileson/blob/master/CONTRIBUTION.md)
 before you start doing anything.
 
-# Tileson is header-only!
+## Header only
+
 This means that all you need is one file, `single_include/tileson.hpp` to have Tileson going
-in your project! The single-file is generated using only ~7000 lines of code with everything included. There is also a `tileson_min.hpp` where no Json parser is bundled. See the `extras` folder for supported Json backends.
+in your project! The single-file is generated using only ~7000 lines of code with everything included. There is also a `single_include/tileson_min.hpp` where no Json parser is bundled. See the `extras` folder for supported Json backends.
 
-You may alternatively copy the `include` directory and all its contents if you
-want to have every component in their own file. This will probably be less heavy on your IDE, but you will still only need to include the `tileson.h` file in the top level. 
+You may alternatively copy the `src` directory and all its contents if you
+want to have every component in their own file. This will probably be less heavy on your IDE, but you will still only need to include the `tileson/tileson.h` file in the top level.
 
-# Unreleased features available in the master-branch
+## Unreleased features available in the master-branch
+
 - Fix: IJson and IDecompressor have no virtual destructor. ([#47](https://github.com/SSBMTonberry/tileson/issues/47)) - Thanks to [matthew-nagy](https://github.com/matthew-nagy)
 
-# What's new in v1.3.0?
+## What's new in v1.3.0?
+
 - Animations are now handled by an own `tson::Animation` object, which is also now showcased with a working animation in the example program ([#40](https://github.com/SSBMTonberry/tileson/issues/40), [#32](https://github.com/SSBMTonberry/tileson/issues/32))
 - Fixed a bug in `tson::Frame` where you would get the wrong tile ID stored. ([#41](https://github.com/SSBMTonberry/tileson/issues/41))
 - `tson::Layer`: Function `getTransparentcolor()`renamed to `getTransparentColor()` ([#38](https://github.com/SSBMTonberry/tileson/issues/38)) - Thanks to [RobLoach](https://github.com/RobLoach)
@@ -41,29 +47,35 @@ want to have every component in their own file. This will probably be less heavy
 - Support for external tilesets ([#33](https://github.com/SSBMTonberry/tileson/issues/33))
 - `tileson.hpp` and `tileson_min.hpp` is now located in root folder. ([#36](https://github.com/SSBMTonberry/tileson/issues/36))
 - See release notes for more details!
-  ### From the v1.3.0 alpha release:
+
+### From the v1.3.0 alpha release
+
 - Tileson now uses a `tson::IJson` abstraction layer, which means the user is no longer restricted to use one Json parser. In fact, there are now three parsers with default implementations: `Json11`, `Nlohmann` and `Picojson`. You may even create your own!
 - The code base of Tileson is reduced from ~26000 to ~7000 lines of code. In addition Tileson is slightly faster due to switching default/main backend from `Nlohmann` to `Json11`.
 - Tileson now has support for reading `LZMA` compressed maps using [PocketLzma](https://github.com/SSBMTonberry/pocketlzma).  Example: The `ultimate_test.json` map gets reduced from `68,6 KiB` to `2,4 KiB` when LZMA compressed.
 
-# Tiled features not yet supported
+## Tiled features not yet supported
+
 - Support for collection of images ([#30](https://github.com/SSBMTonberry/tileson/issues/30))
 
-# What is Tiled?
+## What is Tiled?
+
 Tiled is a general purpose map editor developed by `Thorbjørn Lindeijer`.
 Tiled is perfect if you want to create any map for 2D games, and is very popular.
-Many commercial games have used it as their goto map editor. 
+Many commercial games have used it as their goto map editor.
 A few popular games that have used Tiled: `Shovel Knight`, `Axiom Verge` and `ScubaDiver`.
 
-
-![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/tiled_tileson_image.png "Tiled Screenshot") 
+![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/tiled_tileson_image.png "Tiled Screenshot")
 
 Tiled can be found here:
+
 - [Homepage](https://www.mapeditor.org/)
 - [GitHub](https://github.com/bjorn/tiled)
 
-# How to parse
-Parsing a Tiled json 
+## How to parse
+
+Parsing a Tiled json
+
 ```c++
 #include "tileson.hpp"
 
@@ -185,7 +197,8 @@ int main()
 }
 ```
 
-### Another quick example to showcase how to get data that can be used to produce drawable objects:
+### Another quick example to showcase how to get data that can be used to produce drawable objects
+
 ```c++
 tson::Tileson t;
 std::unique_ptr<tson::Map> map = t.parse(fs::path("./path/to/map.json"));
@@ -291,7 +304,7 @@ if(map->getStatus() == tson::ParseStatus::OK)
         }
     }
 }
-``` 
+```
 
 ### Parsing worlds
 
@@ -333,23 +346,25 @@ for(const auto &folder : m_project.getFolders())
 }
 ```
 
-# Compiling
+## Compiling
+
 The program is cross-platform. It utilizes the features of modern C++ (C++17), which requires the user to have a pretty up to date compiler. Tileson specifically supports the compilers `MSVC` (Windows), `GCC` (Linux) and `Clang` (Mac/OSX), but other compilers supporting all C++17 features should be fine.
 
 As a default, compiling examples are disabled due to CI, but it can easily be enabled through the CMakeLists.txt file on the root level of the project. Also keep in mind that the examples are using content from the `tileson/content` folder and are using relative paths. This is where the executable usually is located when compiling, and must have the same relative path to find the files:
 
-![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-example-destination.png "Demo path") 
+![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-example-destination.png "Demo path")
 
-## Windows
+### Windows
+
 For compiling the demo on Windows, it's recommended to use either Visual Studio or Visual Studio Code and open the CMakeLists.txt on the root level of the project. Examples for Windows required a `x86`-build in the past, but `x64` should now work just as well! Some screenshots to showcase how CMake should be configured to build the demo using Visual Studio 2019:
 
 #### Locate the CMakeLists.txt in the root of this project
 
-![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-vs-compile_2.png "VS 1") 
+![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-vs-compile_2.png "VS 1")
 
 #### Configure build to be x86 or x64
 
-![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-vs-compile.png "VS 2") 
+![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-vs-compile.png "VS 2")
 
 #### And then
 
@@ -361,42 +376,42 @@ For compiling the demo on Windows, it's recommended to use either Visual Studio 
 
 ![alt text](https://github.com/SSBMTonberry/tileson/blob/master/content/demo-vs-compile_6.png "VS 6")
 
-## Linux
+### Linux
 
 If you have `GCC7`, `GCC8`, `GCC9`, `GCC10` or newer as a compiler on your system, you should be good to go!
 If you are okay with the default settings: Just calling the `cmake CMakeLists.txt` inside the project folder will create a `Makefile` for you. Then you can compile the library by simply calling `make`.
 
-## Apple (OSX)
+### Apple (OSX)
 
 `std::filesystem` should be supported by the `Apple Clang`-compiler shipped with the latest version of `Mac OSX`, but may not work with older versions of this OS. If you are using an old version of OSX you can, however, install the newest version of `llvm` via `Homebrew`, which has supported `std::filesystem` for a while.
 To generate a solution to be able to build this library, you will need to open the `CMakeLists.txt` file in `CMake`. If `CMake` is not installed on your system, it can easily be found on the internet.
 
-# Examples
+## Examples
 
 You can find examples on how to draw the `demo maps`/`projects` using frameworks like SFML under [examples](https://github.com/SSBMTonberry/tileson/tree/master/examples).
 To build this, you will have to enable the CMake flag `BUILD_EXAMPLES`. All examples requires `C++17 std::filesystem` to work, and will fail to build on compilers not supporting this feature.
 
-# Generating the single-header
+## Generating the single-header
 
-If Linux is used, a single-header version of Tileson can be generated by calling the 
+If Linux is used, a single-header version of Tileson can be generated by calling the
 `amalgamate_script.sh` in the `tools/`folder.
 Simply call it like this: `sh amalgamate_script.sh`. There is also a .bat-version of this script for Windows.
 
-
-# Libraries used by Tileson
+## Libraries used by Tileson
 
 - [Catch2](https://github.com/catchorg/Catch2/) - For Unit Tests
 - [json11](https://github.com/dropbox/json11) - For JSON read/write
 - [PocketLzma](https://github.com/SSBMTonberry/pocketlzma) - For LZMA compression.
 - [Amalgamate](https://github.com/SSBMTonberry/Amalgamate) - Fork of [vinniefalco/Amalgamate](https://github.com/vinniefalco/Amalgamate) - For generating single-header include of `tileson.hpp` and `tileson_min.hpp`
 
-## Optional Json parsers supported by Tileson 
+## Optional Json parsers supported by Tileson
+
 - [JSON for Modern C++](https://github.com/nlohmann/json) - At least version 3.9.1
 - [Picojson](https://github.com/kazuho/picojson).
 
 The json libraries supported can all be found in a single-header format inside the `extras` folder.
 
-# Libraries used for examples/demo
+## Libraries used for examples/demo
 
 - [SFML](https://github.com/SFML/SFML) - For drawing maps.
 - [Dear ImGui](https://github.com/ocornut/imgui) - For displaying information and managing maps.

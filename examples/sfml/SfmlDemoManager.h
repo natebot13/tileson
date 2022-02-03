@@ -14,11 +14,11 @@
 #include <map>
 #include "vera_font.h"
 
-#include "../../include/external/nlohmann.hpp"
-//#include "../../include/tileson.h"
+#include "../../src/tileson/external/nlohmann.hpp"
+//#include "../../src/tileson/tileson.h"
 #include "../../extras/pocketlzma.hpp"
 #include "../../tileson.hpp"
-//#include "../../include/external/json.hpp"
+//#include "../../src/tileson/external/json.hpp"
 //#include "../../single_include/tileson_min.hpp"
 
 #if __clang__
