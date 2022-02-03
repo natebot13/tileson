@@ -1,12 +1,34 @@
 cmake_minimum_required(VERSION 3.11)
-project(tileson CXX)
 
-set(CMAKE_CXX_STANDARD 17)
 set(TILESON_PROJECT_VERSION_MAJOR 1)
 set(TILESON_PROJECT_VERSION_MINOR 3)
 set(TILESON_PROJECT_VERSION_PATCH 1)
-
 string(JOIN "." TILESON_VERSION ${TILESON_PROJECT_VERSION_MAJOR} ${TILESON_PROJECT_VERSION_MINOR} ${TILESON_PROJECT_VERSION_PATCH})
+
+project(
+  tileson
+  VERSION ${TILESON_VERSION}
+  DESCRIPTION "Modern C++ json Tiled map parser"
+  HOMEPAGE_URL "https://github.com/SSBMTonberry/tileson"
+  LANGUAGES C CXX
+)
+
+set(CMAKE_CXX_STANDARD 17)
+
+# Add tileson target
+
+include(GNUInstallDirs)
+
+add_library(tileson INTERFACE)
+add_library(tson ALIAS tileson)
+
+target_include_directories(tileson INTERFACE 
+    $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+target_compile_features(tileson INTERFACE cxx_std_17)
+
 
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DTILESON_DEBUG")
 
@@ -60,7 +82,7 @@ endif()
 #option(BUILD_SHARED_LIBS "Build shared libraries." OFF)
 option(BUILD_TESTS "Build unit tests." ON)
 option(BUILD_EXAMPLES "Build examples." OFF)
-option(CLEAR_TSON_CMAKE_CACHE "Clear CMake cache for variables. Activate if you are working on the code. Otherwise: keep it off" ON)
+option(CLEAR_TSON_CMAKE_CACHE "Clear CMake cache for variables. Activate if you are working on the code. Otherwise: keep it off" OFF)
 
 option(USE_LEGACY_CLANG_FOR_TESTS "Only use when you have an old version of Homebrew's Clang on OSX" OFF)
 
@@ -86,19 +108,53 @@ install(
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
 )
 
-# Add tileson target
+# install tileson
 
-include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
 
-add_library(tileson INTERFACE)
-add_library(tson ALIAS tileson)
-
-target_include_directories(tileson INTERFACE 
-    $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+install(
+    TARGETS tileson
+    EXPORT tilesonTargets
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-target_compile_features(tileson INTERFACE cxx_std_17)
+write_basic_package_version_file(
+    tilesonConfigVersion.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+    ${tileson_SOURCE_DIR}/cmake/in/tilesonConfig.cmake.in
+    tilesonConfig.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/tileson/cmake
+)
+
+export(
+    EXPORT tilesonTargets
+    FILE ${CMAKE_CURRENT_BINARY_DIR}/tilesonTargets.cmake
+    NAMESPACE tileson::
+)
+
+install(
+    EXPORT tilesonTargets
+    FILE tilesonTargets.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/tileson/cmake
+    NAMESPACE tileson::
+)
+
+install(
+    FILES
+        ${PROJECT_BINARY_DIR}/tilesonConfig.cmake
+        ${PROJECT_BINARY_DIR}/tilesonConfigVersion.cmake
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/tileson/cmake
+)
+
+install(DIRECTORY src/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+export(PACKAGE tileson)
+
+# tests and examples
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
