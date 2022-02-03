@@ -9,8 +9,8 @@
 
 //#define TILESON_UNIT_TEST_USE_SINGLE_HEADER
 
-#include "../include/external/nlohmann.hpp"
-#include "../include/external/picojson.hpp"
+#include "../src/tileson/external/nlohmann.hpp"
+#include "../src/tileson/external/picojson.hpp"
 
 #define POCKETLZMA_LZMA_C_DEFINE
 #include "../extras/pocketlzma.hpp"
@@ -18,7 +18,7 @@
 #ifdef TILESON_UNIT_TEST_USE_SINGLE_HEADER
     #include "../single_include/tileson.hpp"
 #else
-    #include "../include/tileson.h"
+    #include "../src/tileson/tileson.h"
 #endif
 
 #include "tson_files_mapper.h"
@@ -29,7 +29,7 @@
 #include <functional>
 
 
-//#include "../include/json/NlohmannJson.hpp"
+//#include "../src/tileson/json/NlohmannJson.hpp"
 
 /*!
  *

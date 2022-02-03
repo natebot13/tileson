@@ -5,10 +5,10 @@
 #include <utility>
 
 #include "../external_libs/catch.hpp"
-#include "tileson.h"
+#include "../src/tileson/tileson.h"
 
-#include "../include/external/nlohmann.hpp"
-#include "../include/json/NlohmannJson.hpp"
+#include "../src/tileson/external/nlohmann.hpp"
+#include "../src/tileson/json/NlohmannJson.hpp"
 
 class DummyDecompressor : public tson::IDecompressor<std::string_view, std::string>
 {

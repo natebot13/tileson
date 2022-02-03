@@ -4,13 +4,13 @@
 
 
 #include "../TilesonConfig.h"
-#include "../include/external/picojson.hpp"
-#include "../include/external/nlohmann.hpp"
+#include "../src/tileson/external/picojson.hpp"
+#include "../src/tileson/external/nlohmann.hpp"
 
 #ifdef TILESON_UNIT_TEST_USE_SINGLE_HEADER
     #include "../single_include/tileson.hpp"
 #else
-    #include "../include/tileson.h"
+    #include "../src/tileson/tileson.h"
 #endif
 
 #include "../external_libs/catch.hpp"

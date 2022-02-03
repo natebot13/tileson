@@ -23,7 +23,7 @@ add_library(tileson INTERFACE)
 add_library(tileson::tileson ALIAS tileson)
 
 target_include_directories(tileson INTERFACE 
-    $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${tileson_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 

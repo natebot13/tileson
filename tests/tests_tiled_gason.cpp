@@ -8,14 +8,14 @@
 #ifdef TILESON_UNIT_TEST_USE_SINGLE_HEADER
     #include "../single_include/tileson.hpp"
 #else
-    #include "../include/tileson.h"
+    #include "../src/tileson/tileson.h"
 #endif
 
 #include "../external_libs/catch.hpp"
 
 //Must be added manually to be able to test.
-#include "../include/external/gason.hpp"
-#include "../include/json/Gason.hpp"
+#include "../src/tileson/external/gason.hpp"
+#include "../src/tileson/json/Gason.hpp"
 
 TEST_CASE( "Gason - Parse a Map from Tiled's documentation", "[tiled][map]" )
 {

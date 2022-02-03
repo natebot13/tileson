@@ -14,20 +14,20 @@
 //#include <tiled/WangColor.h>
 //#include <tiled/WangTile.h>
 //#include <tiled/WangSet.h>
-//#include "../include/tileson.hpp"
+//#include "../src/tileson/tileson.hpp"
 
 #include "../TilesonConfig.h"
 
 #ifdef TILESON_UNIT_TEST_USE_SINGLE_HEADER
     #include "../single_include/tileson.hpp"
 #else
-    #include "../include/tileson.h"
+    #include "../src/tileson/tileson.h"
 #endif
 
 #include "../external_libs/catch.hpp"
 
-#include "../include/external/nlohmann.hpp"
-#include "../include/json/NlohmannJson.hpp"
+#include "../src/tileson/external/nlohmann.hpp"
+#include "../src/tileson/json/NlohmannJson.hpp"
 
 TEST_CASE( "Parse a Map from Tiled's documentation", "[tiled][map]" )
 {

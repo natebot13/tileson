@@ -7,15 +7,15 @@
 //#define POCKETLZMA_LZMA_C_DEFINE //Already defined once in tests_main
 #include "../extras/pocketlzma.hpp"
 
-#include "../include/external/nlohmann.hpp"
-#include "../include/external/picojson.hpp"
-#include "../include/external/gason.hpp"
-#include "../include/tileson.h"
+#include "../src/tileson/external/nlohmann.hpp"
+#include "../src/tileson/external/picojson.hpp"
+#include "../src/tileson/external/gason.hpp"
+#include "../src/tileson/tileson.h"
 
 #include "tson_files_mapper.h"
 
 //Must be defined after Tileson
-#include "../include/json/Gason.hpp"
+#include "../src/tileson/json/Gason.hpp"
 
 TEST_CASE( "Run benchmarks on all supported json-backends", "[json][benchmarks]" )
 {

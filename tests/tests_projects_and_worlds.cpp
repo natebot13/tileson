@@ -4,7 +4,7 @@
 
 
 #include "../external_libs/catch.hpp"
-#include "tileson.h"
+#include "../src/tileson/tileson.h"
 
 TEST_CASE( "Parse world - Expect 4 maps and parsed data", "[project][world]" )
 {

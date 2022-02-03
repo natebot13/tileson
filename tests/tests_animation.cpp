@@ -4,10 +4,10 @@
 
 #include <ostream>
 #include "../external_libs/catch.hpp"
-//#include "../include/objects/Color.hpp"
+//#include "../src/tileson/objects/Color.hpp"
 #include "../TilesonConfig.h"
 //#include "../single_include/tileson.hpp"
-#include "../include/tileson.h"
+#include "../src/tileson/tileson.h"
 
 TEST_CASE( "Create simple animation with 3 frames. Expect right values after update", "[animation]" )
 {

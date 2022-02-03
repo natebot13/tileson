@@ -3,14 +3,14 @@
 //
 
 #include "../external_libs/catch.hpp"
-#include "../include/external/nlohmann.hpp"
-#include "../include/external/picojson.hpp"
-#include "../include/tileson.h"
+#include "../src/tileson/external/nlohmann.hpp"
+#include "../src/tileson/external/picojson.hpp"
+#include "../src/tileson/tileson.h"
 
 
 //#include "IJsonFakes.hpp"
 
-//#include "../include/json/NlohmannJson.hpp"
+//#include "../src/tileson/json/NlohmannJson.hpp"
 
 
 

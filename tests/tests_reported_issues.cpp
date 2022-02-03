@@ -4,10 +4,10 @@
 
 #include "../external_libs/catch.hpp"
 //#include "../src/Tileson.h"
-//#include "../include/tileson.hpp"
+//#include "../src/tileson/tileson.hpp"
 #include "../TilesonConfig.h"
-#include "../tileson.hpp"
-//#include "../include/tileson.h"
+#include "../single_include/tileson.hpp"
+//#include "../src/tileson/tileson.h"
 
 #include "tson_files_mapper.h"
 #include "../TilesonConfig.h"
