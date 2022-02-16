@@ -6,8 +6,8 @@
 //#include "../src/Tileson.h"
 //#include "../src/tileson/tileson.hpp"
 #include "../TilesonConfig.h"
-#include "../single_include/tileson.hpp"
-//#include "../src/tileson/tileson.h"
+// #include "../single_include/tileson.hpp"
+#include "../src/tileson/tileson.h"
 
 #include "tson_files_mapper.h"
 #include "../TilesonConfig.h"
@@ -143,8 +143,8 @@ TEST_CASE( "Help a fellow programmer in need - expect solution (Issue #4)", "[he
             //Si l'ID de la tile est compris entre le premier et le dernier ID inclus
             if (tile->getId() >= firstId && tile->getId() <= lastId)
             {
-                imagePath = tileset->getImagePath();
-                pathStr = imagePath.u8string();
+                imagePath = tileset->getImage();
+                pathStr = imagePath.string();
             }
 
             //Get position in pixel units --> Position de la Tile
