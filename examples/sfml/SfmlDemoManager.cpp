@@ -36,7 +36,7 @@ std::unique_ptr<tson::Map> SfmlDemoManager::parseMap(const std::string &filename
     {
         for(auto &tileset : map->getTilesets())
         {
-            fs::path tilesetPath = getTilesetImagePath(tileset); //tileset.getImage().u8string()
+            fs::path tilesetPath = getTilesetImagePath(tileset); //tileset.getImage().string()
             storeAndLoadImage(tilesetPath.string(), {0, 0});
         }
 
@@ -70,7 +70,7 @@ bool SfmlDemoManager::parseProject(const std::string &filename)
                         ++worldCount;
                         for(auto &tileset : map->getTilesets())
                         {
-                            fs::path tilesetPath = getTilesetImagePath(tileset); //fs::path(fs::path("../") / tileset.getImage().filename().u8string());
+                            fs::path tilesetPath = getTilesetImagePath(tileset); //fs::path(fs::path("../") / tileset.getImage().filename().string());
                             storeAndLoadImage(tilesetPath.string(), {0, 0});
                         }
 
@@ -98,7 +98,7 @@ bool SfmlDemoManager::parseProject(const std::string &filename)
 
                         for(auto &tileset : map->getTilesets())
                         {
-                            fs::path tilesetPath = getTilesetImagePath(tileset); //fs::path(fs::path("../") / tileset.getImage().filename().u8string());
+                            fs::path tilesetPath = getTilesetImagePath(tileset); //fs::path(fs::path("../") / tileset.getImage().filename().string());
                             storeAndLoadImage(tilesetPath.string(), {0, 0});
                         }
                         m_projectMaps[file.filename().string()] = std::move(map);
@@ -313,7 +313,7 @@ void SfmlDemoManager::drawTileLayer(tson::Layer& layer)//, tson::Tileset* tilese
         position = {position.x + (float)m_positionOffset.x, position.y + (float)m_positionOffset.y};
         //sf::Vector2f position = {(float)obj.getPosition().x + (float)m_positionOffset.x, (float)obj.getPosition().y + (float)m_positionOffset.y};
         fs::path tilesetPath = getTilesetImagePath(*tileset);
-        sf::Sprite *sprite = storeAndLoadImage(tilesetPath.u8string(), {0, 0});
+        sf::Sprite *sprite = storeAndLoadImage(tilesetPath.string(), {0, 0});
         if (sprite != nullptr)
         {
             sf::Vector2f scale = sprite->getScale();
@@ -461,7 +461,7 @@ sf::Sprite *SfmlDemoManager::storeAndLoadImage(const std::string &image, const s
         if(fs::exists(path) && fs::is_regular_file(path))
         {
             std::unique_ptr<sf::Texture> tex = std::make_unique<sf::Texture>();
-            bool imageFound = tex->loadFromFile(path.u8string());
+            bool imageFound = tex->loadFromFile(path.string());
             if(imageFound)
             {
                 std::unique_ptr<sf::Sprite> spr = std::make_unique<sf::Sprite>();
@@ -472,7 +472,7 @@ sf::Sprite *SfmlDemoManager::storeAndLoadImage(const std::string &image, const s
             }
         }
         else
-            std::cout << "Could not find: " << path.u8string() << std::endl;
+            std::cout << "Could not find: " << path.string() << std::endl;
     }
 
     if(m_sprites.count(image) > 0)

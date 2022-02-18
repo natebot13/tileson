@@ -805,7 +805,7 @@ TEST_CASE( "A simple example on how to use data of objects and tiles", "[demo]" 
 
                 //Here you can determine the offset that should be set on a sprite
                 //Example on how it would be done using SFML (where sprite presumably is a member of a generated game object):
-                //sf::Sprite *sprite = storeAndLoadImage(tileset->getImage().u8string(), {0, 0});
+                //sf::Sprite *sprite = storeAndLoadImage(tileset->getImage().string(), {0, 0});
                 //if (sprite != nullptr)
                 //{
                 //    sprite->setTextureRect({drawingRect.x, drawingRect.y, drawingRect.width, drawingRect.height});
